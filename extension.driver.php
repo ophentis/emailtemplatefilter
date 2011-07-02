@@ -46,7 +46,7 @@
 					`id` int(11) NOT NULL auto_increment,
 					`template_id` int(11) NOT NULL,
 					`expression` varchar(255),
-					`sortorder` int(11) NOT NULL,
+					`sortorder` int(11) default NULL,
 					`type` varchar(255) NOT NULL,
 					`subject` varchar(255) NOT NULL,
 					`sender` varchar(255) NOT NULL,
@@ -448,7 +448,7 @@
 			
 			// Log the email:
 			$email['success'] = ($success ? 'yes' : 'no');
-			$email['date'] = DateTimeObj::get('c');
+			$email['date'] = DateTimeObj::get('Y-m-d H:i:s');
 			$email['recipients'] = implode(', ', $email['recipients']);
 			
 			Symphony::Database()->insert($email, 'tbl_etf_logs');
